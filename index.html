@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Uthgard Herald UI Mock</title>
+<!--    <link rel="shortcut icon" href="">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>
+    <link rel="stylesheet" href="herald.css">
+
+    <!--[if IE]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="MainController" class="container">
+       <div class="jumbotron" id="hero">
+           <h2 id="character-name" class="gothic"><span class="red">{{firstLetterOfName}}</span>{{restOfName}}</h2>
+           <h3 id="guild-name">&lt;{{guildName}}&gt;</h3>
+       </div>
+       <div class="row" id="main-info">
+           <div id="player-avatar" class="banner-images col-xs-6 col-sm-2 col-md-2 col-lg-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+               <img class="img-responsive img-rounded" src="http://images.uthgard.org/players/Desperados.jpg" alt="character avatar">
+           </div>
+           <div id="guild-emblem" class="banner-images col-xs-6 col-sm-2 col-md-2 col-lg-2">
+               <img class="img-responsive img-rounded" src="images/emblem.gif" alt="guild-emblem">
+           </div>
+           <div id="header-info" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+               <h3>Level {{level}} Realm Rank {{justRRank}}L{{justRLevel}}</h3>
+               <h4>{{race}} {{characterClass}}</h4>
+               <h4>Owner of a {{houseTier}} at #{{houseNumber}} in Caerwent</h4>
+               <h4>{{tradesTitle}}</h4>
+           </div>
+       </div>
+       <div id="general-items">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <h3 class="gothic">Siege</h3>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="circle"><span>{{relicsCaptured}}</span></div>
+                            <p class="circle-label">Relics Captured</p>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="circle"><span>{{keepsCaptured}}</span></div>
+                            <p class="circle-label">Keeps Captured</p>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="circle"><span>{{keepBossKilled}}</span></div>
+                            <p class="circle-label">Keep Jarl/Chieftan Slain</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-md-offset-2 col-lg-offset-2">
+                    <h3 class="gothic">Recently Earned</h3>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="circle"><span>EC</span></div>
+                            <p class="circle-label">Epic Challenger</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="circle"><span>2nd Place</span></div>
+                            <p class="circle-label">2016 Duel Tournament</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="circle"><span>BoH</span></div>
+                            <p class="circle-label">Bane of Hibernia</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="circle"><span>BoM</span></div>
+                            <p class="circle-label">Bane of Midgard</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="circle"><span>REZ</span></div>
+                            <p class="circle-label">2k Resurrections</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="circle"><span>1st</span></div>
+                            <p class="circle-label">Server 1st: 50 Cleric</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="row">
+            <div class="row mod-row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <h3 class="gothic">RvR Kills</h3>
+                    <canvas id="kill-stats" width="400" height="400"></canvas>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <h3 class="gothic">Race Kills</h3>
+                    <canvas id="races-killed" width="400" height="400"></canvas>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <h3 class="gothic">Weekly RPs</h3>
+                    <canvas id="weekly-rp-canvas" width="400" height="400"></canvas>
+                </div>
+           </div>
+           <div class="row mod-row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <h3 class="gothic">Progress</h3>
+                    <canvas id="progress-canvas" width="400" height="400"></canvas>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <h3 class="gothic">PvE Kills</h3>
+                    <canvas id="mobs-killed" width="400" height="400"></canvas>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <h3 class="gothic">Misc. Info</h3>
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{tradeskill1.skill}}</span></div>
+                            <p class="circle-label">{{tradeskill1.name}}</p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{tradeskill2.skill}}</span></div>
+                            <p class="circle-label">{{tradeskill2.name}}</p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{lastLogin}}</span></div>
+                            <p class="circle-label">Days Since Last Login</p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{killStreak}}</span></div>
+                            <p class="circle-label">Biggest Kill-streak</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{nemesisDeaths}}</span></div>
+                            <p class="circle-label">Times Killed by <a>{{nemesis}}</a></p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{victimKills}}</span></div>
+                            <p class="circle-label">Times s/he Killed <a>{{victim}}</a></p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{killDeathRatio}}</span></div>
+                            <p class="circle-label">Kill to Death Ratio</p>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="circle"><span>{{soloKillRatio}}</span></div>
+                            <p class="circle-label">Solo Kill to Kill Ratio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/MainController.js"></script>
+</body>
+</html>
